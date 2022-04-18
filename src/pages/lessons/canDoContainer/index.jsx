@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import CanDo from './canDo'
 import { useCanDoContext } from '../../' // pages/index.js
-import axios from 'axios'
-
-const baseURL = "http://localhost:4000/candos/ByLevel"
+import { getCanDosByLevel } from '../../../services/cando'
 
 function CanDoContainer() {
   
@@ -12,8 +10,8 @@ function CanDoContainer() {
 
   React.useLayoutEffect(() => {
     async function getCanDos() {
-      const response = await axios.get(`${baseURL}/${canDo.level}`)
-      setCanDos(response.data)
+      const response = await getCanDosByLevel({ level: canDo.level })
+      setCanDos(response)
     }
     getCanDos()
   }, [])

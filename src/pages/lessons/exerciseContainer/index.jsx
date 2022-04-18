@@ -3,7 +3,8 @@ import Exercise from "./exercise";
 import { useUserContext } from '../../../components/'
 import { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "../../" // pages/index.js
 
-import axios from 'axios'
+import { getExercisesByCanDo } from '../../../services/exercise'
+import { createReport } from '../../../services/report'
 
 import { phases, lessonPhases } from "../../../constants/constants"
 
@@ -20,10 +21,7 @@ function ExerciseContainer() {
   const { exercises, setExercises } = useExerciseContext()
   const { report, setReport } = useReportContext()
   const { user } = useUserContext()
-  
-  const baseURL = `http://localhost:4000/exercises/ByCanDo/${canDo._id}`
-  const getURL = "http://localhost:4000/reports/"
-  
+    
   /* PHASE */
   const [phase, setPhase] = useState(phases.PREPARATION)
 
@@ -34,8 +32,8 @@ function ExerciseContainer() {
   /* Funcao que consulta os dados no Backend */
   useEffect(() => {
     async function getExercises() {
-      const response = await axios.get(baseURL)
-      setExercises(response.data)
+      const response = await getExercisesByCanDo({ idCanDo: canDo._id })
+      setExercises(response)
     }
     getExercises()
   }, [])
@@ -103,10 +101,9 @@ function ExerciseContainer() {
     async function saveReport() {
       try {
         if (user !== null) {
-          const response = await axios.post(getURL, {...report, idUser: user._id})
-          setReport(response.data)
-        }
-          
+          const response = await createReport({...report, idUser: user._id})
+          setReport(response)
+        }          
         setLessonPhase(lessonPhases.REPORT)
       } catch (err) {
         console.log(err)

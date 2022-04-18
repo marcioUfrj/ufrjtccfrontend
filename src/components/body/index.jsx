@@ -8,7 +8,7 @@ export function usePageContext() {
   return useContext(PageContext)
 }
 
-export function Body() {
+export default function Body() {
 
   const [page, setPage] = useState(pages.HOME)
   
