@@ -1,9 +1,11 @@
-import { auth, signInWithGoogle, signOutFromGoogle } from '../config/firebase'
+import { getAuthUser, getAuthUid, signInWithGoogle, signOutFromGoogle } from '../config/firebase'
+import { getUserByLoginId, createUser } from '../services'
+import { roles } from '../constants/constants'
 
-export const usuario = auth.currentUser
+export const usuario = getAuthUser()
 
 export function isAuthenticated() {
-  if (auth.currentUser == null) return false
+  if (getAuthUser() === null) return false
   return true
 }
 
@@ -13,21 +15,39 @@ function printError(error) {
   console.log(`Error code: ${errorCode}. ${errorMessage}`)
 }
 
-export function execSignIn(setText) {
+export function execSignIn(setUser) {
   signInWithGoogle()
   .then((result) => {
-    setText('Sign Out')
-    console.log(result)
+
+    async function checkUser() {
+      const tempUser = await getUserByLoginId(getAuthUid())
+      if (tempUser.length === 0) {
+        const newUser = {
+          nickname: " ",
+          nivelCEFR: "emptyCEFR",
+          nivelJLPT: "emptyJLPT",
+          nivelShirai: "emptyShirai",
+          role: roles.USER,
+          loginId: getAuthUid()
+        }
+        const createdUser = await createUser(newUser)
+        setUser(createdUser)
+        return
+      }
+
+      setUser(tempUser[0])      
+    }
+    checkUser()
   })
   .catch((error) => {
     printError(error)
   })
 }
 
-export function execSignOut(setText) {
+export function execSignOut(setUser) {
   signOutFromGoogle()
   .then((result) => {
-    setText('Sign In')
+    setUser(null)
   })
   .catch((error) => {
     printError(error)

@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import CanDo from './canDo'
-import { CanDoContext } from '../'
+import { useCanDoContext } from '../../' // pages/index.js
 import axios from 'axios'
 
 const baseURL = "http://localhost:4000/candos/ByLevel"
 
 function CanDoContainer() {
   
-  const { canDo } = useContext(CanDoContext)
+  const { canDo } = useCanDoContext()
   const [canDos, setCanDos] = useState(null)
 
   React.useLayoutEffect(() => {
@@ -18,7 +18,7 @@ function CanDoContainer() {
     getCanDos()
   }, [])
 
-  console.log(canDos)
+  //console.log(canDos)
   if (!canDos) return null
 
   return (

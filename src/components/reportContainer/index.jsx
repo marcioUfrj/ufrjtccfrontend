@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { CanDoContext, ExerciseContext, ReportContext } from '../../pages/lessons'
+import React from 'react'
+import { useCanDoContext, useExerciseContext, useReportContext } from '../../pages/'
 import { Temporal } from '@js-temporal/polyfill'
 
 const ReportContainer = () => {
 
-  const { canDo } = useContext(CanDoContext)
-  const { exercises } = useContext(ExerciseContext)
-  const { report } = useContext(ReportContext)
+  const { canDo } = useCanDoContext()
+  const { exercises } = useExerciseContext()
+  const { report } = useReportContext()
 
   /* Função que calcula o total de acertos para cada exercicio */
   function totalAcertosExercicio(questions) {

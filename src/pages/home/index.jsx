@@ -1,11 +1,12 @@
 import React from 'react'
-
+import UserContainer from './profile'
 const HomeContainer = () => {
+
   return (
     <div className="container">
       <div>home</div>
-      <div className="btn-grid">
-        
+      <UserContainer />
+      <div className="btn-grid">        
       </div>
     </div>
   )

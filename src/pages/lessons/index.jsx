@@ -1,15 +1,19 @@
-import React, { useState, createContext } from 'react'
-import ExerciseContainer from "./exerciseContainer";
-import CanDoContainer from "./canDoContainer";
-import LevelContainer from "./levelContainer";
-import ReportContainer from "../../components/reportContainer";
+import React, { useState, createContext, useContext } from 'react'
+import { ExerciseContainer, CanDoContainer, LevelContainer } from "../";
+import { ReportContainer } from "../../components/";
 
 import { lessonPhases } from "../../constants/constants"
 
-export const LessonPhaseContext = createContext()
-export const CanDoContext = createContext()
-export const ExerciseContext = createContext()
-export const ReportContext = createContext()
+const LessonPhaseContext = createContext()
+const CanDoContext = createContext()
+const ExerciseContext = createContext()
+const ReportContext = createContext()
+
+export function useLessonPhaseContext() { return useContext(LessonPhaseContext)}
+export function useCanDoContext() { return useContext(CanDoContext)}
+export function useExerciseContext() { return useContext(ExerciseContext)}
+export function useReportContext() { return useContext(ReportContext)}
+
 
 function LessonContainer() {
 

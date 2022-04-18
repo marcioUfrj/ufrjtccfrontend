@@ -18,7 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-console.log(auth)
+//console.log(auth)
 
 const provider = new GoogleAuthProvider()
 
@@ -31,6 +31,15 @@ export const signInWithGoogle = () => {
 
 export const signOutFromGoogle = () => {
   return signOut(auth)
+}
+
+export const getAuthUid = () => {
+  if (auth.currentUser === null) return null
+  return auth.currentUser.uid
+}
+
+export const getAuthUser = () => {
+  return auth.currentUser
 }
 
 /* Function para fazer login com Gmail */

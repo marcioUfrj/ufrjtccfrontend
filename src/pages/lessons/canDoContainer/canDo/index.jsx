@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react'
-import  { LessonPhaseContext, CanDoContext, ReportContext } from '../../'
+import React, { useState, useEffect } from 'react'
+import  { useLessonPhaseContext, useCanDoContext, useReportContext } from '../../../'
 import { lessonPhases } from "../../../../constants/constants"
 
 function CanDo({ item }) {
-  const setLessonPhase = useContext(LessonPhaseContext)
-  const { setReport } = useContext(ReportContext)
-  const { setCanDo } = useContext(CanDoContext)
+  const setLessonPhase = useLessonPhaseContext()
+  const { setReport } = useReportContext()
+  const { setCanDo } = useCanDoContext()
   const [inCanDo, setInCando] = useState(item)
   
   function selectCanDo() {

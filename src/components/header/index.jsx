@@ -1,19 +1,30 @@
-import React, { useState } from 'react'
-import { usePageContext } from '../body'
+import React, { useEffect, useState } from 'react'
+import { usePageContext, useUserContext } from '../'
 import { pages } from '../../constants/constants'
 import { isAuthenticated, execSignIn, execSignOut } from '../../middleware/auth'
 
 const Header = () => {
+  
   const { setPage } = usePageContext()
-  const [text, setText] = useState('Sign In')
+  const { user, setUser } = useUserContext()
+  
+  function checkUserToSetText() {
+    return user ?  'Sign Out' : 'Sign In'
+  }
+  
+  const [text, setText] = useState(checkUserToSetText())
 
   function updateLogin() {
     if (isAuthenticated()) {
-      execSignOut(setText)
+      execSignOut(setUser)
       return
     }
-    execSignIn(setText)
+    execSignIn(setUser)
   }
+
+  useEffect(() => {
+    setText(checkUserToSetText())
+  }, [user])
 
   return (
     <header>

@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from "react"
-import { PhaseContext, AnswerSelectedContext } from "../../exerciseContainer"
-import { phases } from "../../../../constants/constants"
+import React, { useState, useEffect } from "react"
+import { usePhaseContext, useAnswerSelectedContext } from "../../"
+import { phases } from "../../../../../constants/constants"
 
 import { Temporal } from '@js-temporal/polyfill'
 
 function Answer({ item }) {
-  const { phase, setPhase } = useContext(PhaseContext)
-  const setAnswerSelected = useContext(AnswerSelectedContext)
+  const { phase, setPhase } = usePhaseContext()
+  const setAnswerSelected = useAnswerSelectedContext()
   const [initialTime, setInitialTime] = useState(Temporal.Now.plainDateTimeISO())
   const [text, setText] = useState(item.text)
   

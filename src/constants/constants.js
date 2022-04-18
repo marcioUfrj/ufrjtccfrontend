@@ -1,3 +1,5 @@
+export const backendURL = "http://localhost:4000"
+
 export const pages = {
   HOME: "Home",
   LESSONS: "Lessons"
@@ -22,7 +24,7 @@ export const roles = {
   USER: "user"
 }
 
-export const nivelCRFE = {
+export const nivelCEFRobj = {
   A1: "A1",
   A2: "A2",
   B1: "B1",
@@ -31,13 +33,30 @@ export const nivelCRFE = {
   C2: "C2"
 }
 
-export const nivelJPLT = {
+export const nivelCEFRvector = [
+  "A1",
+  "A2",
+  "B1",
+  "B2",
+  "C1",
+  "C2"
+]
+
+export const nivelJLPTobj = {
   N5: "N5",
   N4: "N4",
   N3: "N3",
   N2: "N2",
   N1: "N1"
 }
+
+export const nivelJLPTvector = [
+  "N5",
+  "N4",
+  "N3",
+  "N2",
+  "N1"
+]
 
 export const nivelShirai = [
   "DAI0",

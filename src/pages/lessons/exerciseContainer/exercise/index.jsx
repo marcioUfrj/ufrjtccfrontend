@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import AnswerContainer from './answerContainer'
-import { PhaseContext } from "../exerciseContainer"
-import { phases } from "../../../constants/constants"
+import { usePhaseContext } from "../../../"
+import { phases } from "../../../../constants/constants"
 
 function Exercise({ exercise }) {
-  const { phase }= useContext(PhaseContext)
+  const { phase }= usePhaseContext()
   
   return (
     <div>
