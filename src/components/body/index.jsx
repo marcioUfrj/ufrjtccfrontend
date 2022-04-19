@@ -1,17 +1,17 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react'
 import { Header, UserProvider } from "../"
 import { HomeContainer, LessonContainer} from "../../pages"
 import { pages } from '../../constants/constants'
-
+import { getAuthUser } from '../../config/firebase'
 export const PageContext = createContext()
 export function usePageContext() {
   return useContext(PageContext)
 }
 
-export default function Body() {
+function Body() {
 
   const [page, setPage] = useState(pages.HOME)
-  
+
   return (
     <div className="container-body">
       <PageContext.Provider value={{ page, setPage }}>
@@ -25,3 +25,5 @@ export default function Body() {
     </div>
   )
 }
+
+export default Body

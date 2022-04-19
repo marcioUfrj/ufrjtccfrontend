@@ -15,29 +15,32 @@ function printError(error) {
   console.log(`Error code: ${errorCode}. ${errorMessage}`)
 }
 
+export async function checkUser(setUser) {
+  console.log(`isAuth: ${isAuthenticated()} | checkUser.getLoginId: ${getAuthUid()}`)
+  if (getAuthUid() === null) return
+  const tempUser = await getUserByLoginId(getAuthUid())
+  if (tempUser.length === 0) {
+    const newUser = {
+      nickname: " ",
+      nivelCEFR: "emptyCEFR",
+      nivelJLPT: "emptyJLPT",
+      nivelShirai: "emptyShirai",
+      role: roles.USER,
+      loginId: getAuthUid()
+    }
+    const createdUser = await createUser(newUser)
+    setUser(createdUser)
+    return
+  }
+
+  setUser(tempUser[0])
+}
+
 export function execSignIn(setUser) {
   signInWithGoogle()
   .then((result) => {
-
-    async function checkUser() {
-      const tempUser = await getUserByLoginId(getAuthUid())
-      if (tempUser.length === 0) {
-        const newUser = {
-          nickname: " ",
-          nivelCEFR: "emptyCEFR",
-          nivelJLPT: "emptyJLPT",
-          nivelShirai: "emptyShirai",
-          role: roles.USER,
-          loginId: getAuthUid()
-        }
-        const createdUser = await createUser(newUser)
-        setUser(createdUser)
-        return
-      }
-
-      setUser(tempUser[0])      
-    }
-    checkUser()
+    localStorage.setItem("loginId", result.user.uid)
+    checkUser(setUser)
   })
   .catch((error) => {
     printError(error)
@@ -48,6 +51,7 @@ export function execSignOut(setUser) {
   signOutFromGoogle()
   .then((result) => {
     setUser(null)
+    localStorage.removeItem("loginId")
   })
   .catch((error) => {
     printError(error)

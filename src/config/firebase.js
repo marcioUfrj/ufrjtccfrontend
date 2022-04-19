@@ -34,12 +34,22 @@ export const signOutFromGoogle = () => {
 }
 
 export const getAuthUid = () => {
-  if (auth.currentUser === null) return null
-  return auth.currentUser.uid
+  if (auth.currentUser !== null) return auth.currentUser.uid
+  return localStorage.getItem("loginId")
 }
 
-export const getAuthUser = () => {
-  return auth.currentUser
+export const getAuthEmail = () => {
+  if (auth.currentUser === null) return null
+  return auth.currentUser.email
+}
+
+export const getAuthName = () => {
+  if (auth.currentUser === null) return null
+  return auth.currentUser.displayName
+}
+
+export const getAuthUser = () => {  
+  return  auth.currentUser
 }
 
 /* Function para fazer login com Gmail */
