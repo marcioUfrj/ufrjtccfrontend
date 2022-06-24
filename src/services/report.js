@@ -9,7 +9,6 @@ export async function getReports(){
 }
 
 export async function createReport(report) {
-  console.log(report)
   const response = await axios.post(baseURL, report)
   return response.data
 }

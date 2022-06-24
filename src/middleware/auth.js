@@ -49,7 +49,7 @@ export function execSignIn(setUser) {
 
 export function execSignOut(setUser) {
   signOutFromGoogle()
-  .then((result) => {
+  .then(() => {
     setUser(null)
     localStorage.removeItem("loginId")
   })

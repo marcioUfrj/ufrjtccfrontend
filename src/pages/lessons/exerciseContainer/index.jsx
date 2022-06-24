@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react'
-import Exercise from "./exercise";
+import QuestionContainer from "./question";
 import { useUserContext } from '../../../components/'
 import { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "../../" // pages/index.js
 
@@ -121,7 +121,7 @@ function ExerciseContainer() {
           <h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2>
           <div>{exercises[indExercise].name}</div>
           <div>{exercises[indExercise].description}</div>
-          <Exercise exercise={exercises[indExercise].questions[indQuestion]} />
+          <QuestionContainer exercise={exercises[indExercise].questions[indQuestion]} />
           <div className="controls">
             { phase === phases.PREPARATION ? <button className="btn btn-primary" onClick={() => setPhase(phases.WAIT)}>Começar exercício</button> : <></>}
             <button className="btn btn-primary btn-l-margin" onClick={() => skipExercise()}>{skipText}</button>

@@ -1,5 +1,5 @@
 export const backendURLlocal = "http://localhost:4000"
-export const backendURL = "http://tccmarcioconceito.herokuapp.com"
+export const backendURL = "https://tccmarcioconceito.herokuapp.com"
 
 export const pages = {
   HOME: "Home",

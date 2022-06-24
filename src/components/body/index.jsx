@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react'
 import { Header, UserProvider } from "../"
 import { HomeContainer, LessonContainer} from "../../pages"
 import { pages } from '../../constants/constants'
+
 export const PageContext = createContext()
 export function usePageContext() {
   return useContext(PageContext)

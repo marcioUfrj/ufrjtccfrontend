@@ -1,9 +1,9 @@
 import React from "react"
 import AnswerContainer from './answerContainer'
-import { usePhaseContext } from "../../../"
+import { usePhaseContext } from "../../.."
 import { phases } from "../../../../constants/constants"
 
-function Exercise({ exercise }) {
+function QuestionContainer({ exercise }) {
   const { phase }= usePhaseContext()
   
   return (
@@ -14,4 +14,4 @@ function Exercise({ exercise }) {
   )
 }
 
-export default Exercise
+export default QuestionContainer
