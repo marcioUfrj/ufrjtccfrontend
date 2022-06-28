@@ -65,9 +65,11 @@ function ExerciseContainer() {
     setPhase(phases.WAIT)
   }
 
+  const nothing = () => {
+  }
   /* Funcao que verifica se eh o final de Can-Do e se o usuario ja respondeu a pergunta */
   useEffect(() => {
-    if (!exercises) return null
+    if (!exercises) return nothing
     //console.log(`indice:${indExercise} | length -1: ${exercises.length - 1} | phase: ${phase}`)
     if (endExercise && indExercise === exercises.length - 1 && phase === phases.ANSWER) {
       console.log('entrou no if')
@@ -77,7 +79,7 @@ function ExerciseContainer() {
 
   /* Funcao que verifica se eh o final das questoes do exercicio */
   useEffect(() => {
-    if (!exercises) return null
+    if (!exercises) return nothing
     if (indQuestion + 1 === exercises[indExercise].questions.length ) {
       setEndExercise(true)
     }
