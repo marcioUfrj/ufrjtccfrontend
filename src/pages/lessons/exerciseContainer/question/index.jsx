@@ -8,7 +8,6 @@ function QuestionContainer({ exercise }) {
   
   return (
     <div>
-      <br></br>
       {phase !== phases.PREPARATION ? <div>{exercise.question}</div> : <></>}
       {phase !== phases.PREPARATION ? <AnswerContainer answers={exercise.answers} /> : <></>}
     </div>
