@@ -3,7 +3,9 @@ export const backendURL = "https://tccmarcioconceito.herokuapp.com"
 
 export const pages = {
   HOME: "Home",
-  LESSONS: "Lessons"
+  LESSONS: "Lessons",
+  EXAM: "Exam",
+  ABOUT: "About"
 }
 
 export const phases = {

@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from 'react'
-import { ExerciseContainer, CanDoContainer, LevelContainer } from "../";
-import { ReportContainer } from "../../components/";
+import { ExerciseContainer, CanDoContainer, LevelContainer } from "..";
+import { ReportContainer } from "../../components";
 
 import { lessonPhases } from "../../constants/constants"
 
@@ -14,8 +14,7 @@ export function useCanDoContext() { return useContext(CanDoContext)}
 export function useExerciseContext() { return useContext(ExerciseContext)}
 export function useReportContext() { return useContext(ReportContext)}
 
-
-function LessonContainer() {
+function ExamContainer() {
 
   const [lessonPhase, setLessonPhase] = useState(lessonPhases.LEVEL)
   const [canDo, setCanDo] = useState('')
@@ -54,4 +53,4 @@ function LessonContainer() {
   )
 }
 
-export default LessonContainer
+export default ExamContainer

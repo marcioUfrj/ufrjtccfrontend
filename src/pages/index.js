@@ -1,14 +1,20 @@
+//ABOUT
+import AboutContainer from './about/';
 // HOME
 import HomeContainer from './home/';
 // LESSONS
-import LessonContainer, { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "./lessons";
-import LevelContainer from './lessons/levelContainer/'
-import ExerciseContainer, { usePhaseContext, useAnswerSelectedContext } from './lessons/exerciseContainer/'
-import CanDoContainer from './lessons/canDoContainer/'
+import LessonContainer from './lesson/';
+// EXAMS
+import ExamContainer, { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "./exam";
+import LevelContainer from './exam/levelContainer/'
+import ExerciseContainer, { usePhaseContext, useAnswerSelectedContext } from './exam/exerciseContainer/'
+import CanDoContainer from './exam/canDoContainer/'
 
 // EXPORT all
 export { 
-  LessonContainer, useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext,
+  ExamContainer, useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext,
+  LessonContainer,
+  AboutContainer,
   HomeContainer,
   LevelContainer,
   ExerciseContainer, usePhaseContext, useAnswerSelectedContext,
