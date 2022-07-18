@@ -1,10 +1,14 @@
 @import 'shared/buttons.css';
 
+html {
+  font-size: 100%; /*let the user control the font-size with their browser*/
+  box-sizing: border-box;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Gotham Rounded;
+  box-sizing: inherit;
 }
 
 :root {
@@ -12,7 +16,33 @@
   --hue-wrong: 0;
   --hue-correct: 145;
   --color-danger-hue-offset: 180;
+  --primary-dark-cyan: hsl(176, 72%, 28%);
+  --primary-moderate-cyan: hsl(176, 50%, 47%);
+  
   --hue-danger: calc(var(--hue-neutral) - var(--color-danger-hue-offset));
+  /* KANJI FONT */
+  --font-japanese: Klee One, cursive;
+  
+  /* Font Sizes */
+  --font-sm: 0.875rem; /* 14px */
+  --font-md: 1.125rem; /* 18px */
+  --font-lg: 2rem; /* 32px */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 400;
+}
+
+h2, p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .home-link {
@@ -30,7 +60,7 @@
 
 .nav-container > div  {
   --hue: var(--hue-neutral);
-  background-color: hsl(var(--hue), 100%, 20%);
+  background-color: var(--primary-dark-cyan); /*hsl(var(--hue), 100%, 20%);*/
 }
 
 .nav-container > div:hover  {
@@ -49,7 +79,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--hue), 100%, 20%);
+  background-color: var(--primary-dark-cyan); /*hsl(var(--hue), 100%, 20%);*/
 }
 
 .container-body.correct {
@@ -145,6 +175,26 @@
 
 .input-config {
 
+}
+
+.japanese-text {
+  font-family: var(--font-japanese);
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.lesson-name {
+  margin-bottom: 10px;
+}
+
+.exercise-name {
+  margin-bottom: 15px;
+}
+
+.exercise-description {
+  margin-bottom: 10px;
 }
 
 /* CONFIGURACAO GENERICA */

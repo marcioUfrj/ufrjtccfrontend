@@ -1,7 +1,7 @@
 /* CONFIGURACAO DE BOTAO */
 .btn {
   --hue: var(--hue-neutral);
-  border: 1px solid hsl(var(--hue), 100%, 30%);
+  border: 1px solid black; /*hsl(var(--hue), 100%, 30%);*/
   border-radius: 5px;
   padding: 5px 10px;
   outline: none;
@@ -18,7 +18,7 @@
 
 .btn-primary {
   --hue: var(--hue-neutral);
-  background-color: hsl(var(--hue), 100%, 50%);
+  background-color: var(--primary-moderate-cyan); /*hsl(var(--hue), 100%, 50%);*/
   color: white;
 }
 

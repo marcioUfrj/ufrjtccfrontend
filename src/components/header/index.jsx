@@ -25,14 +25,15 @@ const Header = () => {
   useEffect(() => {
     setText(checkUserToSetText())
   }, [user])
+  
+  //<div className="home-link" onClick={() => (setPage(pages.LESSONS))}>{pages.LESSONS}</div>
+  //<div className="home-link" onClick={() => (setPage(pages.ABOUT))}>{pages.ABOUT}</div>
 
   return (
     <header>
       <nav className="nav-container">
         <div className="home-link" onClick={() => (setPage(pages.HOME))}>{pages.HOME}</div>
-        <div className="home-link" onClick={() => (setPage(pages.LESSONS))}>{pages.LESSONS}</div>
         <div className="home-link" onClick={() => (setPage(pages.EXAM))}>{pages.EXAM}</div>
-        <div className="home-link" onClick={() => (setPage(pages.ABOUT))}>{pages.ABOUT}</div>
         <button className="btn btn-danger" onClick={updateLogin}>{text}</button>
       </nav>
     </header>

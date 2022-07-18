@@ -18,7 +18,6 @@ function LevelContainer() {
       <div>Lista de Níveis</div>
       <div className="btn-grid">
         <button className="btn btn-primary" onClick={() => selectLevel("A1")}>Nível A1</button>
-        <button className="btn btn-primary" onClick={() => selectLevel("B1")}>Nível B1</button>
       </div>
     </div>
   )

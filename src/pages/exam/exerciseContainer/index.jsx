@@ -120,9 +120,9 @@ function ExerciseContainer() {
     <PhaseContext.Provider value={{ phase, setPhase }}>
       <AnswerSelectedContext.Provider value={ setAnswerSelected }>
         <div className="container">
-          <h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2>
-          <div>{exercises[indExercise].name}</div>
-          <div>{exercises[indExercise].description}</div>
+          <div className="lesson-name"><h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2></div>
+          <div className="exercise-name"><p>{exercises[indExercise].name}</p></div>
+          <div className="exercise-description"><p>{exercises[indExercise].description}</p></div>
           <QuestionContainer exercise={exercises[indExercise].questions[indQuestion]} />
           <div className="controls">
             { phase === phases.PREPARATION ? <button className="btn btn-primary" onClick={() => setPhase(phases.WAIT)}>Começar exercício</button> : <></>}

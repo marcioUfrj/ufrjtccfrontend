@@ -46,28 +46,32 @@ const UserContainer = () => {
   return (
     <>
       <form onSubmit={handleUpdateUser}>
-        <div>
+        <div className="lb_margin">
           <label>
             Nickname: 
             <input type="text" value={user.nickname} onChange={handleChangeNickname}/>
           </label>
         </div>
-        <div>
+        <div className="lb_margin">
           <label>
             Nivel CEFR: 
             <select defaultValue={user.nivelCEFR} onChange={handleChangeCEFR}>{populateSelect(nivelCEFRvector, user.nivelCEFR)}</select>
           </label>
+        </div>
+        <div className="lb_margin">
           <label>
             Nivel JLPT:
             <select defaultValue={user.nivelJLPT} onChange={handleChangeJLPT}>{populateSelect(nivelJLPTvector, user.nivelJLPT)}</select>
           </label>
+        </div>
+        <div className="lb_margin">
           <label>
             Nivel Shirai:
             <select defaultValue={user.nivelShirai} onChange={handleChangeShirai}>{populateSelect(nivelShirai, user.nivelShirai)}</select>
           </label>
         </div>
         <div>
-          <input type="submit" value="Salvar alterações" />
+          <input type="submit" value="Salvar alterações" className="btn"/>
         </div>
       </form>
     </>

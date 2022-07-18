@@ -4,7 +4,7 @@ const HomeContainer = () => {
 
   return (
     <div className="container">
-      <p>Bem-vindo!</p>
+      <h1>Bem-vindo!</h1>
       <UserContainer />
       <div className="btn-grid"></div>
     </div>
