@@ -26,8 +26,9 @@ function Answer({ item }) {
 
   function answerSelected() {
     const finalTime = Temporal.Now.plainDateTimeISO()
+    const score = item.correct === true ? 1 : 0
     setPhase(phases.ANSWER)
-    setAnswerSelected(item._id, initialTime.toString(), finalTime.toString())
+    setAnswerSelected(item._id, score, initialTime.toString(), finalTime.toString())
   }
   
   useEffect(() => {

@@ -85,13 +85,14 @@ function ExerciseContainer() {
     }
   }, [indQuestion, indExercise, exercises])
 
-  function setAnswerSelected (idAnswer, initialTime, finalTime) {
+  function setAnswerSelected (idAnswer, score, initialTime, finalTime) {
     setReport({ 
       idCanDo: report.idCanDo,
       answers: [...report.answers, {
           idAnswerSelected: idAnswer,
           idQuestion: exercises[indExercise].questions[indQuestion]._id,
           idExercise: exercises[indExercise]._id,
+          score: score,
           initialTime: initialTime,
           finalTime: finalTime
         }

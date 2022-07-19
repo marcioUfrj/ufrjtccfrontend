@@ -135,11 +135,16 @@ h2, p {
 
 .input-grid {
   display: grid;
-  grid-template-columns: 70px auto;
+  grid-template-columns: 102px auto;
   grid-template-rows: auto;
   margin: 5px 0;
   padding: 5px;
-  gap: 2px;
+  gap: 5px;
+
+}
+
+.input-min-width {
+  justify-self: start;
 }
 
 .input-grid.lf-col-nm-exercise {
