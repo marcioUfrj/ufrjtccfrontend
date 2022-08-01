@@ -8,6 +8,11 @@ export async function getExercises() {
  return response.data
 }
 
+export async function getExercisesById({ idExercise }) {
+  const response = await axios.get(`${baseURL}/${idExercise}`)
+ return response.data
+}
+
 export async function getExercisesByCanDo({ idCanDo }) {
   const response = await axios.get(`${baseURL}/ByCanDo/${idCanDo}`)
  return response.data

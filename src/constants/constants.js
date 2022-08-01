@@ -93,3 +93,12 @@ export const nivelShirai = [
   "DAI28",
   "DAI29",
 ]
+
+export const reportHeaderCase1 = [
+  { label: "UserID", key: "user_id"},
+  { label: "Item", key: "idQuestion"},
+  { label: "Skill", key: "idSkill"},
+  { label: "Correct", key: "score"},
+  { label: "Wins", key: "wins"},
+  { label: "Fails", key: "falls"},
+]

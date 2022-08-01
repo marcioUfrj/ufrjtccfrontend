@@ -19,15 +19,20 @@ function CanDoContainer() {
   //console.log(canDos)
   if (!canDos) return null
 
-  return (
+  /*
     <div className="container">
-    <div>Lista de Níveis</div>
-    <div className="btn-grid">
-      {canDos.map((item, index) => (
-          <CanDo key={index} item={item} />
-      ))}
-    </div>
   </div>
+  */
+
+  return (
+    <>
+      <div>Lista de Níveis</div>
+      <div className="btn-grid">
+        {canDos.map((item, index) => (
+            <CanDo key={index} item={item} />
+        ))}
+      </div>
+    </>
   )
 }
 

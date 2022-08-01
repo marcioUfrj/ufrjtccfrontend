@@ -13,13 +13,17 @@ function LevelContainer() {
     setCanDo({ level: level })
   }
 
-  return (
+  /*
     <div className="container">
+    </div>
+  */
+  return (
+    <>
       <div>Lista de Níveis</div>
       <div className="btn-grid">
         <button className="btn btn-primary" onClick={() => selectLevel("A1")}>Nível A1</button>
       </div>
-    </div>
+    </>
   )
 }
 

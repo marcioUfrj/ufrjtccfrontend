@@ -8,6 +8,16 @@ export async function getReports(){
   return response.data
 }
 
+export async function getReportById({ idReport }){
+  const response = await axios.get(`${baseURL}/${idReport}`)
+  return response.data
+}
+
+export async function getReportsByUser({ idUser }){
+  const response = await axios.get(`${baseURL}/ByUser/${idUser}`)
+  return response.data
+}
+
 export async function createReport(report) {
   const response = await axios.post(baseURL, report)
   return response.data

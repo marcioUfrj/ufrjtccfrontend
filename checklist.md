@@ -9,3 +9,6 @@
 
 - Criar mais exercícios para cada Lição/Can-do
 -- Selecionar aleatoriamente qual exercício vai ser feito: NÃO FARÁ TODOS OS EXERCÍCIOS
+
+
+-https://devcenter.heroku.com/articles/git

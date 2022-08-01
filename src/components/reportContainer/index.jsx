@@ -1,12 +1,12 @@
 import React from 'react'
-import { useCanDoContext, useExerciseContext, useReportContext } from '../../pages/'
+//import { useCanDoContext, useExerciseContext, useReportContext } from '../../pages/'
 import { Temporal } from '@js-temporal/polyfill'
 
-const ReportContainer = () => {
+const ReportContainer = ({ report, canDo, exercises }) => {
 
-  const { canDo } = useCanDoContext()
-  const { exercises } = useExerciseContext()
-  const { report } = useReportContext()
+  //const { canDo } = useCanDoContext()
+  //const { exercises } = useExerciseContext()
+  //const { report } = useReportContext()
 
   /* Função que calcula o total de acertos para cada exercicio */
   function totalAcertosExercicio(questions) {
@@ -32,7 +32,7 @@ const ReportContainer = () => {
   }
 
   return (
-    <div className="container">
+    <>
       <h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2>
       {exercises.map((exercise, index) => (
         <div key={exercise._id}>
@@ -42,7 +42,7 @@ const ReportContainer = () => {
           <div>{`Tempo total: ${totalTempoExercicio(exercise.questions)}`}</div>
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

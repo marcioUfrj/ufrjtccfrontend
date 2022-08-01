@@ -33,7 +33,7 @@ function ExamContainer() {
       container = <ExerciseContainer />
       break
     case lessonPhases.REPORT:
-      container = <ReportContainer />
+      container = <ReportContainer report={report} canDo={canDo} exercises={exercises}/>
       break
     default:
       container = <div>Nenhuma fase válida encontrada</div>
@@ -45,7 +45,9 @@ function ExamContainer() {
       <CanDoContext.Provider value={{ canDo, setCanDo }}>
         <ExerciseContext.Provider value={{ exercises, setExercises }}>
           <ReportContext.Provider value={{ report, setReport }}>
-            {container}
+              <div className="container">
+                {container}
+              </div>
           </ReportContext.Provider>
         </ExerciseContext.Provider>
       </CanDoContext.Provider>

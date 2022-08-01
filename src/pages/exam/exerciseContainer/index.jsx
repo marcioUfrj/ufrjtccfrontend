@@ -106,7 +106,7 @@ function ExerciseContainer() {
         if (user !== null) {
           const response = await createReport({...report, idUser: user._id})
           setReport(response)
-        }          
+        }
         setLessonPhase(lessonPhases.REPORT)
       } catch (err) {
         console.log(err)
@@ -117,10 +117,15 @@ function ExerciseContainer() {
 
   if (!exercises) return null
   
+  /*
+        <div className="container">
+        </div>
+  */
+
   return (
     <PhaseContext.Provider value={{ phase, setPhase }}>
       <AnswerSelectedContext.Provider value={ setAnswerSelected }>
-        <div className="container">
+        <>
           <div className="lesson-name"><h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2></div>
           <div className="exercise-name"><p>{exercises[indExercise].name}</p></div>
           <div className="exercise-description"><p>{exercises[indExercise].description}</p></div>
@@ -131,7 +136,7 @@ function ExerciseContainer() {
             {!endExercise ? <button className="btn btn-primary btn-l-margin" onClick={() => nextQ()}>Próxima questão</button> : <></>}
             { phase === phases.END ? <button className="btn btn-primary btn-l-margin" onClick={() => generateReport()}>Relatório</button> : <></>}
           </div>
-        </div>
+        </>
       </AnswerSelectedContext.Provider>
     </PhaseContext.Provider>
   )
