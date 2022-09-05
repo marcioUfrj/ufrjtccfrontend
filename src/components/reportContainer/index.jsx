@@ -11,9 +11,9 @@ const ReportContainer = ({ report, canDo, exercises }) => {
   /* Função que calcula o total de acertos para cada exercicio */
   function totalAcertosExercicio(questions) {
     const accTotal = questions.reduce((total, question) => {
-      const correct = question.answers.find(item => item.correct === true)
-      const selected = report.answers.find(item => item.idQuestion === question._id)
-      if (correct._id === selected.idAnswerSelected) return total = total + 1
+      const correct = question.answers.find(answer => answer.correct === true)
+      const selected = report.answers.find(answer => answer.idQuestion === question.idQuestion)
+      if (correct.idAnswer._id === selected.idAnswerSelected) return total = total + 1
       return total
     }, 0)
 
@@ -21,8 +21,8 @@ const ReportContainer = ({ report, canDo, exercises }) => {
   }
 
   function totalTempoExercicio(questions) {
-    const firstAnswer = report.answers.find(item => item.idQuestion === questions[0]._id)
-    const lastAnswer = report.answers.find(item => item.idQuestion === questions[questions.length-1]._id)
+    const firstAnswer = report.answers.find(answer => answer.idQuestion === questions[0].idQuestion)
+    const lastAnswer = report.answers.find(answer => answer.idQuestion === questions[questions.length-1].idQuestion)
     
     const tempo = Temporal.PlainDateTime.from(lastAnswer.finalTime)
                   .since(Temporal.PlainDateTime.from(firstAnswer.initialTime))

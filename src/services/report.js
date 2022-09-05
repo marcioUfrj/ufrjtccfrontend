@@ -22,3 +22,14 @@ export async function createReport(report) {
   const response = await axios.post(baseURL, report)
   return response.data
 }
+
+// POPULATED REPORTS
+export async function getPopulatedReportById({ idReport }){
+  const response = await axios.get(`${baseURL}/getPopulated/${idReport}`)
+  return response.data
+}
+
+export async function getPopulatedReportsByUser({ idUser }){
+  const response = await axios.get(`${baseURL}/getPopulated/ByUser/${idUser}`)
+  return response.data
+}

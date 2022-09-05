@@ -3,8 +3,7 @@ import QuestionContainer from "./question";
 import { useUserContext } from '../../../components/'
 import { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "../../" // pages/index.js
 
-import { getExercisesByCanDo } from '../../../services/exercise'
-import { createReport } from '../../../services/report'
+import { createReport, getPolulatedExercisesByCanDo } from '../../../services/'
 
 import { phases, lessonPhases } from "../../../constants/constants"
 
@@ -21,7 +20,7 @@ function ExerciseContainer() {
   const { exercises, setExercises } = useExerciseContext()
   const { report, setReport } = useReportContext()
   const { user } = useUserContext()
-    
+  
   /* PHASE */
   const [phase, setPhase] = useState(phases.PREPARATION)
 
@@ -32,7 +31,7 @@ function ExerciseContainer() {
   /* Funcao que consulta os dados no Backend */
   useEffect(() => {
     async function getExercises() {
-      const response = await getExercisesByCanDo({ idCanDo: canDo._id })
+      const response = await getPolulatedExercisesByCanDo({ idCanDo: canDo._id })
       setExercises(response)
     }
     getExercises()
@@ -90,7 +89,7 @@ function ExerciseContainer() {
       idCanDo: report.idCanDo,
       answers: [...report.answers, {
           idAnswerSelected: idAnswer,
-          idQuestion: exercises[indExercise].questions[indQuestion]._id,
+          idQuestion: exercises[indExercise].questions[indQuestion].idQuestion,
           idExercise: exercises[indExercise]._id,
           score: score,
           initialTime: initialTime,

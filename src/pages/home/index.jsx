@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import UserContainer from './profile'
-import { ReportContainer } from '../../components/'
-import { getReportById, getReportsByUser, getExercisesById, getCanDosById } from '../../services/'
+import { ReportContainer, useUserContext } from '../../components/'
+import { getPopulatedReportById, getReportsByUser, getReports, getExercisesById, getCanDosById } from '../../services/'
 
-import { useUserContext } from '../../components/'
+import { questionIds } from '../../constants/constants'
 
 import { Temporal } from '@js-temporal/polyfill'
 import { CSVLink } from 'react-csv'
@@ -34,18 +34,33 @@ const HomeContainer = () => {
   }
 
 
+  const createQuestionsModelIds = (reports) => {
+    let questionIds = []
+    reports.forEach((iReport) => {
+      questionIds = questionIds.concat(
+                      iReport.answers.map(item => {
+                        return item.idQuestion
+                      })
+                    )
+    })
+
+    const t = [...new Set(questionIds)].map((item, index) => {
+      return [item, index + 1]
+    })
+    //setQuestionIds(new Map(t))
+  }
   const dataFromReportCase1 = (reports) => {
-    console.log(reports)
+    //console.log(reports)
     let dataToExport = []
 
     reports.forEach(iReport => {
-      let temp = iReport.answers.map(item => {
+      let temp = iReport.answers.map(answer => {
         //console.log(item)
         return {
-          idUser: iReport.idUser, 
-          idQuestion: item.idQuestion, 
-          skill: iReport.idCanDo === "62b9d72d8c02c34b14723195" ? 1 : 2,
-          correct: item.score, 
+          user: user.modelId,
+          item: answer.idQuestion._id, //questionIds.get(answer.idQuestion._id)
+          skill: answer.idQuestion.skill_model_b,
+          correct: answer.score,
           wins: 0, 
           fails: 0}
       })
@@ -53,12 +68,12 @@ const HomeContainer = () => {
       //console.log(temp)
       let wins = [0, 0]
       let fails = [0, 0]
-      temp.forEach(item => {
+      temp.forEach(answer => {
         //console.log(fails[item.skill-1])
-        item.wins = wins[item.skill-1]
-        item.fails = fails[item.skill-1]
-        wins[item.skill-1] = wins[item.skill-1] + item.correct
-        fails[item.skill-1] = fails[item.skill-1] + Math.abs(item.correct - 1)
+        answer.wins  = wins[answer.skill-1]
+        answer.fails = fails[answer.skill-1]
+        wins[answer.skill-1]  =  wins[answer.skill-1] + answer.correct
+        fails[answer.skill-1] = fails[answer.skill-1] + Math.abs(answer.correct - 1)
       })
 
       dataToExport = dataToExport.concat(temp)
@@ -74,11 +89,14 @@ const HomeContainer = () => {
         //const res_exercise = await getExercisesById({idExercise: '62bb7c5e5b6c41563b427ac4'})
         //const res_cando = await getCanDosById({idCanDo: '62b9d7cc8c02c34b1472319e'})
 
-        const response = await getReportsByUser({idUser: user._id})
-        //console.log(response)
-        //console.log(res_exercise[0])
-        //console.log(res_cando)
+        //const response = await getReportsByUser({idUser: user._id})
+        const response = await getPopulatedReportById({idReport: '62fd38376f2a2de7a412b75f'})
+        console.log(response)
+        //const tReports = await getReports()
+        //console.log(tReports)
+        //createQuestionsModelIds(tReports)
         setDataCsv(dataFromReportCase1(response))
+        console.log('relatorios carregados')
         //setReport(response[0])
         //setExercises(res_exercise)
         //setCanDo(res_cando)
@@ -100,6 +118,7 @@ const HomeContainer = () => {
         <button className="btn btn-primary" onClick={() => generateReportCase1()}>Carregar Relatórios: Case 1</button>
         <CSVLink
           data={dataCsv}
+          enclosingCharacter={``}
           //asyncOnClick={true}
           //onClick={generateReport}
           filename={"my-file.csv"}

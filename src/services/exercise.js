@@ -18,3 +18,8 @@ export async function getExercisesByCanDo({ idCanDo }) {
  return response.data
 }
 
+export async function getPolulatedExercisesByCanDo({ idCanDo }) {
+  const response = await axios.get(`${baseURL}/getPopulated/ByCanDo/${idCanDo}`)
+ return response.data
+}
+

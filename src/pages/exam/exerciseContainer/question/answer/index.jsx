@@ -8,7 +8,7 @@ function Answer({ item }) {
   const { phase, setPhase } = usePhaseContext()
   const setAnswerSelected = useAnswerSelectedContext()
   const [initialTime, setInitialTime] = useState(Temporal.Now.plainDateTimeISO())
-  const [text, setText] = useState(item.text)
+  const [text, setText] = useState(item.idAnswer.text)
   
   let classe
 
@@ -28,11 +28,11 @@ function Answer({ item }) {
     const finalTime = Temporal.Now.plainDateTimeISO()
     const score = item.correct === true ? 1 : 0
     setPhase(phases.ANSWER)
-    setAnswerSelected(item._id, score, initialTime.toString(), finalTime.toString())
+    setAnswerSelected(item.idAnswer._id, score, initialTime.toString(), finalTime.toString())
   }
   
   useEffect(() => {
-    setText(item.text)
+    setText(item.idAnswer.text)
     setInitialTime(Temporal.Now.plainDateTimeISO())
   }, [item])
 
