@@ -109,10 +109,7 @@ const HomeContainer = () => {
   }
 
 
-  return (
-    <div className="container">
-      <h1>Bem-vindo!</h1>
-      <UserContainer />
+  /*
       {container}
       <div className="btn-grid">
         <button className="btn btn-primary" onClick={() => generateReportCase1()}>Carregar Relatórios: Case 1</button>
@@ -127,6 +124,11 @@ const HomeContainer = () => {
           Baixar Relatórios
         </CSVLink>
       </div>
+  */
+  return (
+    <div className="container">
+      <h1>Bem-vindo!</h1>
+      <UserContainer />
     </div>
   )
 }
