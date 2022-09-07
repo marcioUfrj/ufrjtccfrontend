@@ -160,16 +160,8 @@ export const questionIds = new Map(
   ]
 )
 
-export const coefsModel = new Map(
-  [
-    ["skill0", 0],
-    ["skill1", 0.2973104138501465],
-    ["skill2", 0.08215781399327927],
-    ["wins0", 0],
-    ["wins1", 0.08464545849359072],
-    ["wins2", 0.09873039723301497],
-    ["fails0", 0],
-    ["fails1", -0.22452467666777523],
-    ["fails2", -0.14993917700831852]
-  ]
-)
+export const id_models = {
+  unificado : '6316a828e00b754e3cd1751f',
+  semi_unificado : '6316a855e00b754e3cd1752e',
+  granular : '6316a86ce00b754e3cd1753c'
+}

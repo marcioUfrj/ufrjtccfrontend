@@ -29,6 +29,15 @@ Adicionar no lr.py:
   python fm.py --d 5 data/tcc02/X-swf.npz
 
 
+-- Upload models
+  py tcc_database.py --dataset tcc_unificado --cd_model unificado --action upload
+  py tcc_database.py --dataset tcc_semi_unificado --cd_model semi_unificado --action upload
+  py tcc_database.py --dataset tcc_granular --cd_model granular --action upload
+
+Download models
+  py tcc_database.py --dataset tcc_unificado --cd_model unificado --action download
+  py tcc_database.py --dataset tcc_semi_unificado --cd_model semi_unificado --action download
+  py tcc_database.py --dataset tcc_granular --cd_model granular --action download
 
 
 

@@ -3,14 +3,25 @@ import QuestionContainer from "./question";
 import { useUserContext } from '../../../components/'
 import { useLessonPhaseContext, useCanDoContext, useExerciseContext, useReportContext } from "../../" // pages/index.js
 
-import { createReport, getPolulatedExercisesByCanDo } from '../../../services/'
+import { createReport, getPolulatedExercisesByCanDo, getActiveModels } from '../../../services/'
 
 import { phases, lessonPhases } from "../../../constants/constants"
 
 const PhaseContext = createContext()
 const AnswerSelectedContext = createContext()
+const ModelsExamContext = createContext()
 export function usePhaseContext() { return useContext(PhaseContext)}
 export function useAnswerSelectedContext() { return useContext(AnswerSelectedContext)}
+export function useModelsExamContext() { return useContext(ModelsExamContext)}
+
+function createInputsObject(input={}){
+  let inputs = {}
+  for (let i in input) {
+    inputs[i] = 0
+  }
+
+  return inputs
+}
 
 function ExerciseContainer() {
   
@@ -27,12 +38,22 @@ function ExerciseContainer() {
   const [indExercise, setIndExercise] = useState(0)
   const [indQuestion, setIndQuestion] = useState(0)
   const [endExercise, setEndExercise] = useState(false)
+  const [modelsExam, setModelsExam] = useState([])
 
   /* Funcao que consulta os dados no Backend */
   useEffect(() => {
     async function getExercises() {
       const response = await getPolulatedExercisesByCanDo({ idCanDo: canDo._id })
       setExercises(response)
+      const response2 = await getActiveModels()
+      
+      const models_adj = response2.map(model => {
+        //console.log(model['mapCoefs'])
+        const inputs = createInputsObject(model['mapCoefs'])
+        return { ...model, 'inputs': inputs, 'proba': 0 }
+    })
+    
+     setModelsExam(models_adj)
     }
     getExercises()
   }, [])
@@ -124,18 +145,20 @@ function ExerciseContainer() {
   return (
     <PhaseContext.Provider value={{ phase, setPhase }}>
       <AnswerSelectedContext.Provider value={ setAnswerSelected }>
-        <>
-          <div className="lesson-name"><h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2></div>
-          <div className="exercise-name"><p>{exercises[indExercise].name}</p></div>
-          <div className="exercise-description"><p>{exercises[indExercise].description}</p></div>
-          <QuestionContainer exercise={exercises[indExercise].questions[indQuestion]} />
-          <div className="controls">
-            { phase === phases.PREPARATION ? <button className="btn btn-primary" onClick={() => setPhase(phases.WAIT)}>Começar exercício</button> : <></>}
-            <button className="btn btn-primary btn-l-margin" onClick={() => skipExercise()}>{skipText}</button>
-            {!endExercise ? <button className="btn btn-primary btn-l-margin" onClick={() => nextQ()}>Próxima questão</button> : <></>}
-            { phase === phases.END ? <button className="btn btn-primary btn-l-margin" onClick={() => generateReport()}>Relatório</button> : <></>}
-          </div>
-        </>
+        <ModelsExamContext.Provider value={ { modelsExam, setModelsExam } }>
+          <>
+            <div className="lesson-name"><h2>{`Nível ${canDo.level}, ${canDo.name}`}</h2></div>
+            <div className="exercise-name"><p>{exercises[indExercise].name}</p></div>
+            <div className="exercise-description"><p>{exercises[indExercise].description}</p></div>
+            <QuestionContainer exercise={exercises[indExercise].questions[indQuestion]} />
+            <div className="controls">
+              { phase === phases.PREPARATION ? <button className="btn btn-primary" onClick={() => setPhase(phases.WAIT)}>Começar exercício</button> : <></>}
+              <button className="btn btn-primary btn-l-margin" onClick={() => skipExercise()}>{skipText}</button>
+              {!endExercise ? <button className="btn btn-primary btn-l-margin" onClick={() => nextQ()}>Próxima questão</button> : <></>}
+              { phase === phases.END ? <button className="btn btn-primary btn-l-margin" onClick={() => generateReport()}>Relatório</button> : <></>}
+            </div>
+          </>
+        </ModelsExamContext.Provider>
       </AnswerSelectedContext.Provider>
     </PhaseContext.Provider>
   )

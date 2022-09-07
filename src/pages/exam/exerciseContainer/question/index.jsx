@@ -9,7 +9,7 @@ function QuestionContainer({ exercise }) {
   return (
     <div>
       {phase !== phases.PREPARATION ? <div className="japanese-text">{exercise.question}</div> : <></>}
-      {phase !== phases.PREPARATION ? <AnswerContainer answers={exercise.answers} /> : <></>}
+      {phase !== phases.PREPARATION ? <AnswerContainer answers={exercise.answers} exercise={exercise}/> : <></>}
     </div>
   )
 }
