@@ -94,74 +94,22 @@ export const nivelShirai = [
   "DAI29",
 ]
 
-export const reportHeaderCase1 = [
-  { label: "UserID", key: "user_id"},
-  { label: "Item", key: "idQuestion"},
-  { label: "Skill", key: "idSkill"},
-  { label: "Correct", key: "score"},
-  { label: "Wins", key: "wins"},
-  { label: "Fails", key: "falls"},
+export const nivelsObj = {
+  Iniciante: "Iniciante",
+  Intermediario:  "Intermediário",
+  Avancado: "Avançado"
+}
+
+export const nivelsVector = [
+  "Iniciante",
+  "Intermediário",
+  "Avançado"
 ]
 
-export const questionIds = new Map(
-  [
-    ["62fcff514c75500d5b38d8fd", 0],
-    ["62d5d4b4971f290a664b101c", 1],
-    ["62d5d4b4971f290a664b1020", 2],
-    ["62d5d4b4971f290a664b1024", 3],
-    ["62d5d4b4971f290a664b1028", 4],
-    ["62d5d4b4971f290a664b102c", 5],
-    ["62d5d4b4971f290a664b1030", 6],
-    ["62d5d4b4971f290a664b1034", 7],
-    ["62d5d4b4971f290a664b1038", 8],
-    ["62d5d4b4971f290a664b103c", 9],
-    ["62d5d4b4971f290a664b1040", 10],
-    ["62d5d4b4971f290a664b1044", 11],
-    ["62d5d4b4971f290a664b1048", 12],
-    ["62d5d4b4971f290a664b104c", 13],
-    ["62d5d4b4971f290a664b1050", 14],
-    ["62d5d4b4971f290a664b1054", 15],
-    ["62d5d4b4971f290a664b1058", 16],
-    ["62d5d4b4971f290a664b105c", 17],
-    ["62d5d4b4971f290a664b1060", 18],
-    ["62d5d4b4971f290a664b1064", 19],
-    ["62ced00c18fbfdd252508662", 20],
-    ["62ced00c18fbfdd252508667", 21],
-    ["62ced00c18fbfdd25250866c", 22],
-    ["62ced00c18fbfdd252508671", 23],
-    ["62ced00c18fbfdd252508676", 24],
-    ["62ced00c18fbfdd25250867b", 25],
-    ["62ced00c18fbfdd252508680", 26],
-    ["62ced00c18fbfdd252508685", 27],
-    ["62ced00c18fbfdd25250868a", 28],
-    ["62ced00c18fbfdd25250868f", 29],
-    ["62ced00c18fbfdd252508694", 30],
-    ["62ced00c18fbfdd252508699", 31],
-    ["62ced00c18fbfdd25250869e", 32],
-    ["62ced00c18fbfdd2525086a3", 33],
-    ["62ced00c18fbfdd2525086a8", 34],
-    ["62ced00c18fbfdd2525086ad", 35],
-    ["62ced00c18fbfdd2525086b2", 36],
-    ["62ced00c18fbfdd2525086b7", 37],
-    ["62ced00c18fbfdd2525086bc", 38],
-    ["62ced00c18fbfdd2525086c1", 39],
-    ["62ced00c18fbfdd2525086c6", 40],
-    ["62ced00c18fbfdd2525086cb", 41],
-    ["62ced00c18fbfdd2525086d0", 42],
-    ["62ced00d18fbfdd2525086d5", 43],
-    ["62ced00d18fbfdd2525086da", 44],
-    ["62ced00d18fbfdd2525086df", 45],
-    ["62ced00d18fbfdd2525086e4", 46],
-    ["62ced00d18fbfdd2525086e9", 47],
-    ["62ced00d18fbfdd2525086ee", 48],
-    ["62ced00d18fbfdd2525086f3", 49],
-    ["62ced00d18fbfdd2525086f8", 50],
-    ["62ced00d18fbfdd2525086fd", 51]
-  ]
-)
-
-export const id_models = {
-  unificado : '6316a828e00b754e3cd1751f',
-  semi_unificado : '6316a855e00b754e3cd1752e',
-  granular : '6316a86ce00b754e3cd1753c'
+export const modelsThresholds = {
+  A1: {
+    begginer: [0, 0.4],
+    intermediate: [0.4, 0.8],
+    advanced: [0.8, 1]
+  }
 }

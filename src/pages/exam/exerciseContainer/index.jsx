@@ -124,7 +124,16 @@ function ExerciseContainer() {
     async function saveReport() {
       try {
         if (user !== null) {
-          const response = await createReport({...report, idUser: user._id})
+          const output = modelsExam.map(model => {
+            return { 'id_model': model._id, 'proba': model.proba }
+          })
+          
+          const response = await createReport({...report, 
+                                  idUser: user._id, 
+                                  nivelJLPT: user.nivelJLPT, 
+                                  nivelJLPTProgresso: user.nivelJLPTProgresso,
+                                  models_output: output
+                                })
           setReport(response)
         }
         setLessonPhase(lessonPhases.REPORT)

@@ -2,7 +2,7 @@ import React from 'react'
 import { useUserContext } from '../../../components/body/UserContext'
 import { getAuthUid } from '../../../config/firebase'
 import { updateUser } from '../../../services'
-import { nivelCEFRvector, nivelJLPTvector, nivelShirai } from '../../../constants/constants'
+import { nivelsVector, nivelJLPTvector, nivelShirai } from '../../../constants/constants'
 
 const UserContainer = () => {
 
@@ -29,6 +29,10 @@ const UserContainer = () => {
     setUser({...user, nivelJLPT: e.target.value})
   }
 
+  function handleChangeJLPTProgresso(e) {
+    setUser({...user, nivelJLPTProgresso: e.target.value})
+  }
+
   function handleChangeShirai(e) {
     setUser({...user, nivelShirai: e.target.value})
   }
@@ -49,12 +53,12 @@ const UserContainer = () => {
         <div className="input-grid">
           <label>Nickname:</label>
           <input type="text" value={user.nickname} onChange={handleChangeNickname}/>
-          <label>Nivel CEFR: </label>
-          <select className="input-min-width" defaultValue={user.nivelCEFR} onChange={handleChangeCEFR}>{populateSelect(nivelCEFRvector, user.nivelCEFR)}</select>
-          <label>Nivel JLPT:</label>
-          <select className="input-min-width" defaultValue={user.nivelJLPT} onChange={handleChangeJLPT}>{populateSelect(nivelJLPTvector, user.nivelJLPT)}</select>
+          <label>Nivel JLPT: </label>
+          <select className="input-min-width" defaultValue={user.nivelJLPT} onChange={handleChangeJLPT}>{ populateSelect(nivelJLPTvector, user.nivelJLPT) }</select>
+          <label>Progresso no JLPT:</label>
+          <select className="input-min-width" defaultValue={user.nivelJLPTProgresso} onChange={handleChangeJLPTProgresso}>{ populateSelect(nivelsVector, user.nivelJLPTProgresso) }</select>
           <label>Nivel Shirai:</label>
-          <select className="input-min-width" defaultValue={user.nivelShirai} onChange={handleChangeShirai}>{populateSelect(nivelShirai, user.nivelShirai)}</select>
+          <select className="input-min-width" defaultValue={user.nivelShirai} onChange={handleChangeShirai}>{ populateSelect(nivelShirai, user.nivelShirai) }</select>
         </div>
         <div>
           <input type="submit" value="Salvar alterações" className="btn"/>
