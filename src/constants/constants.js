@@ -106,6 +106,11 @@ export const nivelsVector = [
   "Avançado"
 ]
 
+export const agreeTermsVector = [
+  "Sim",
+  "Não"
+]
+
 export const modelsThresholds = {
   A1: {
     begginer: [0, 0.4],

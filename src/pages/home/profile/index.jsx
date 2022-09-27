@@ -2,7 +2,7 @@ import React from 'react'
 import { useUserContext } from '../../../components/body/UserContext'
 import { getAuthUid } from '../../../config/firebase'
 import { updateUser } from '../../../services'
-import { nivelsVector, nivelJLPTvector, nivelShirai } from '../../../constants/constants'
+import { nivelsVector, nivelJLPTvector, nivelShirai, agreeTermsVector } from '../../../constants/constants'
 
 const UserContainer = () => {
 
@@ -21,8 +21,12 @@ const UserContainer = () => {
     setUser({...user, nickname: e.target.value})
   }
 
-  function handleChangeCEFR(e) {
-    setUser({...user, nivelCEFR: e.target.value})
+  function handleChangeAdult(e) {
+    setUser({...user, adult: e.target.value === "Sim" ? true : false})
+  }
+
+  function handleChangeAgreeTermsOfUse(e) {
+    setUser({...user, agreeTermsOfUse: e.target.value === "Sim" ? true : false})
   }
 
   function handleChangeJLPT(e) {
@@ -35,6 +39,14 @@ const UserContainer = () => {
 
   function handleChangeShirai(e) {
     setUser({...user, nivelShirai: e.target.value})
+  }
+
+  function getObjectProperty(obj, property_name, default_value) {
+    if (obj.hasOwnProperty(property_name) === false) {
+      return default_value
+    }
+
+    return obj[property_name] === true ? 'Sim' : 'Não'
   }
 
   function handleUpdateUser(e) {
@@ -53,9 +65,13 @@ const UserContainer = () => {
         <div className="input-grid">
           <label>Nickname:</label>
           <input type="text" value={user.nickname} onChange={handleChangeNickname}/>
-          <label>Nivel JLPT: </label>
+          <label>Maior de idade?</label>
+          <select className="input-min-width" defaultValue={getObjectProperty(user, 'adult', "Não")} onChange={handleChangeAdult}>{ populateSelect(agreeTermsVector, getObjectProperty(user, 'adult', "Não")) }</select>
+          <label>Concordo com os termos de uso?</label>
+          <select className="input-min-width" defaultValue={getObjectProperty(user, 'agreeTermsOfUse', "Não")} onChange={handleChangeAgreeTermsOfUse}>{ populateSelect(agreeTermsVector, getObjectProperty(user, 'agreeTermsOfUse', "Não")) }</select>
+          <label>Qual seu nível JLPT? </label>
           <select className="input-min-width" defaultValue={user.nivelJLPT} onChange={handleChangeJLPT}>{ populateSelect(nivelJLPTvector, user.nivelJLPT) }</select>
-          <label>Progresso no JLPT:</label>
+          <label>Qual seu progresso dentro do nível JLPT?</label>
           <select className="input-min-width" defaultValue={user.nivelJLPTProgresso} onChange={handleChangeJLPTProgresso}>{ populateSelect(nivelsVector, user.nivelJLPTProgresso) }</select>
           <label>Nivel Shirai:</label>
           <select className="input-min-width" defaultValue={user.nivelShirai} onChange={handleChangeShirai}>{ populateSelect(nivelShirai, user.nivelShirai) }</select>
